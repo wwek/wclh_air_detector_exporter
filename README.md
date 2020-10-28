@@ -1,5 +1,4 @@
-<img alt="Weather Station" src="assets/img/logo_banner.png" />
- 
+
 --- 
  
 <p align="right">
