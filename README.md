@@ -38,7 +38,31 @@ wclh_air_detector_exporter读取串口数据并把数据进行结构化，然后
 
 
 ## 下载&安装
+#./wclh_air_detector_exporter -serial_port /dev/ttyUSB0
 
+#自动启动&进程守护
+sudo bash -c 'cat > /etc/systemd/system/wclh_air_detector_exporter.service << EOF
+[Unit]
+Description=https://github.com/wwek/wclh_air_detector_exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+#User=root
+ExecStart=/data/soft/wclh_air_detector_exporter/wclh_air_detector_exporter
+
+[Install]
+WantedBy=default.target
+EOF'
+
+sudo systemctl daemon-reload
+sudo systemctl status wclh_air_detector_exporter
+sudo systemctl start wclh_air_detector_exporter
+sudo systemctl enable wclh_air_detector_exporter
+sudo systemctl status wclh_air_detector_exporter
+
+curl http://localhost:9166/metrics
 
 ## 自定义编译
 ```
