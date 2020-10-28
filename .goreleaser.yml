@@ -1,0 +1,13 @@
+builds:
+  - binary: wclh_air_detector_exporter
+    goos:
+#      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm
+      - arm64
+    goarm:
+      - 6
+      - 7
