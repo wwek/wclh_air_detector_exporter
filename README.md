@@ -38,8 +38,8 @@ wclh_air_detector_exporter读取串口数据并把数据进行结构化，然后
 
 
 ## 下载&安装
-#./wclh_air_detector_exporter -serial_port /dev/ttyUSB0
 
+```
 #自动启动&进程守护
 sudo bash -c 'cat > /etc/systemd/system/wclh_air_detector_exporter.service << EOF
 [Unit]
@@ -63,6 +63,20 @@ sudo systemctl enable wclh_air_detector_exporter
 sudo systemctl status wclh_air_detector_exporter
 
 curl http://localhost:9166/metrics
+```
+
+### 自定义参数
+
+| 参数       | 默认值         | 说明        |
+| -------- | ---------- | ----------------- |
+| listen_addr  | :9166  | 监听地址，默认 :9166   |
+| serial_port  | /dev/ttyUSB0  | 串口地址  |
+| device_id  | wclh  | 设备id  |
+| device_locaiton  | home  | 设备地理位置  |
+
+```
+#./wclh_air_detector_exporter -serial_port /dev/ttyUSB0
+```
 
 ## 自定义编译
 ```
