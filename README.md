@@ -68,7 +68,34 @@ curl http://localhost:9166/metrics
 ```
 make setup
 make buildall
+#编译后的二进制包在dist目录中
 ```
+
+## wclh_air_detector_exporter 指标说明表
+
+| 指标               | 说明                             | 备注                    |
+| ------------------ | -------------------------------- | ----------------------- |
+| meter_temperature  | 温度摄氏度℃                      |                         |
+| meter_humidity     | 湿度百分比%                      |                         |
+| meter_ch_pm1dot0    | 国标CH PM1.0 ug/m³               |                         |
+| meter_ch_pm2dot5    | 国标CH PM2.5 ug/m³               |                         |
+| meter_ch_pm10       | 国标CH PM10 ug/m³                |                         |
+| meter_us_pm1dot0    | 美标US PM1.0 ug/m³               |                         |
+| meter_us_pm2dot5    | 美标US PM2.5 ug/m³               |                         |
+| meter_us_pm10       | 美标US PM10 ug/m³                |                         |
+| meter_gt0dot3um    | 直径大于 >0.3um 颗粒物个数 ug/m³ |                         |
+| meter_gt0dot5um    | 直径大于 >0.5um 颗粒物个数 ug/m³ |                         |
+| meter_gt1dot0um    | 直径大于 >1.0um 颗粒物个数 ug/m³ |                         |
+| meter_gt2dot5um    | 直径大于 >2.5um 颗粒物个数 ug/m³ |                         |
+| meter_gt5dot0um    | 直径大于 >5.0um 颗粒物个数 ug/m³ |                         |
+| meter_gt10um       | 直径大于 >10um 颗粒物个数 ug/m³  |                         |
+| meter_co2          | 二氧化碳 CO2 ppm                 | 二氧化碳 CO2 < 1000 ppm |
+| meter_hcho         | 甲醛 HCHO mg/m³                  | 甲醛 HCHO < 0.08 mg/m³  |
+| meter_tvoc         | 异味 TVOC mg/m³                  | 异味 TVOC < 0.8 mg/m³   |
+| meter_aqiatpm2dot5 | AQI@PM2.5 空气质量指数           |                         |
+
+
+
 
 ## 支持的微创联合M5S空气检测仪版本
 

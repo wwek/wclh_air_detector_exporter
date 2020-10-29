@@ -27,14 +27,14 @@ var (
 func SetupMetrics() {
 	Temperature = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_temperature",
-		Help: "Current temperature in ℃",
+		Help: "Current temperature in ℃ / 温度摄氏度℃",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
 	})
 	Humidity = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_humidity",
-		Help: "Current humidity level in %",
+		Help: "Current humidity level in % / 湿度百分比%",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
@@ -83,21 +83,21 @@ func SetupMetrics() {
 	})
 	Gt0dot3um = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_gt0dot3um",
-		Help: "Current >0.3um level in ug/m³ / 直径大于 >0.3um 颗粒物个数",
+		Help: "Current >0.3um level in ug/m³ / 直径大于 >0.3um 颗粒物个数 ug/m³",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
 	})
 	Gt0dot5um = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_gt0dot5um",
-		Help: "Current >0.5um level in ug/m³ / 直径大于 >0.5um 颗粒物个数",
+		Help: "Current >0.5um level in ug/m³ / 直径大于 >0.5um 颗粒物个数 ug/m³",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
 	})
 	Gt1dot0um = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_gt1dot0um",
-		Help: "Current >1.0um level in ug/m³ / 直径大于 >1.0um 颗粒物个数",
+		Help: "Current >1.0um level in ug/m³ / 直径大于 >1.0um 颗粒物个数 ug/m³",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
@@ -105,7 +105,7 @@ func SetupMetrics() {
 
 	Gt2dot5um = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_gt2dot5um",
-		Help: "Current >2.5um level in ug/m³ / 直径大于 >2.5um 颗粒物个数",
+		Help: "Current >2.5um level in ug/m³ / 直径大于 >2.5um 颗粒物个数 ug/m³",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
@@ -113,7 +113,7 @@ func SetupMetrics() {
 
 	Gt5dot0um = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_gt5dot0um",
-		Help: "Current >5.0um level in ug/m³ / 直径大于 >5.0um 颗粒物个数",
+		Help: "Current >5.0um level in ug/m³ / 直径大于 >5.0um 颗粒物个数 ug/m³",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
@@ -121,7 +121,7 @@ func SetupMetrics() {
 
 	Gt10um = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_gt10um",
-		Help: "Current >10um level in ug/m³ / 直径大于 >10um 颗粒物个数",
+		Help: "Current >10um level in ug/m³ / 直径大于 >10um 颗粒物个数 ug/m³",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
@@ -153,7 +153,7 @@ func SetupMetrics() {
 
 	Aqiatpm2dot5 = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "meter_aqiatpm2dot5",
-		Help: "Current AQI@PM2.5 / AQI@PM2.5 控制质量指数",
+		Help: "Current AQI@PM2.5 / AQI@PM2.5 空气质量指数",
 	}, []string{
 		"sensor_id",
 		"sensor_location",
