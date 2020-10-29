@@ -40,6 +40,15 @@ wclh_air_detector_exporter读取串口数据并把数据进行结构化，然后
 ## 下载&安装
 
 ```
+WCLH_AIR_DETECTOR_EXPORTER_VERSION=0.1.2
+wget https://github.com/wwek/wclh_air_detector_exporter/releases/download/v${WCLH_AIR_DETECTOR_EXPORTER_VERSION}/wclh_air_detector_exporter_${WCLH_AIR_DETECTOR_EXPORTER_VERSION}_linux_armv7.tar.gz
+tar zxvf wclh_air_detector_exporter_${WCLH_AIR_DETECTOR_EXPORTER_VERSION}_linux_armv7.tar.gz
+mkdir -p /data/soft/wclh_air_detector_exporter
+mv wclh_air_detector_exporter /data/soft/wclh_air_detector_exporter
+cd /data/soft/wclh_air_detector_exporter
+
+#./wclh_air_detector_exporter -serial_port /dev/ttyUSB0
+
 #自动启动&进程守护
 sudo bash -c 'cat > /etc/systemd/system/wclh_air_detector_exporter.service << EOF
 [Unit]
