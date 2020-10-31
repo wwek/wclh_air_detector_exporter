@@ -71,6 +71,7 @@ func DecodedSignal(line string) (stop bool) {
 	return
 }
 
+// AssignmentMetrics 对prometheus metrics进行赋值
 func AssignmentMetrics(s Signal) {
 	var labels = prometheus.Labels{
 		"sensor_id":       *DeviceID,
@@ -101,12 +102,12 @@ func AssignmentMetrics(s Signal) {
 		Tvoc.With(labels).Set(s.Columns[15])
 	}
 
-	apiResult, err := aqi.Calculate(aqi.PM25{Concentration: s.Columns[3]})
+	aqiResult, err := aqi.Calculate(aqi.PM25{Concentration: s.Columns[3]})
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	Aqiatpm2dot5.With(labels).Set(apiResult.AQI)
+	Aqiatpm2dot5.With(labels).Set(aqiResult.AQI)
 }
 
 func httpHealthzRequestHandler(w http.ResponseWriter, r *http.Request) {
