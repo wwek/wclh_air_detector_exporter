@@ -36,6 +36,7 @@ wclh_air_detector_exporter读取串口数据并把数据进行结构化，然后
  ![img](https://img.alicdn.com/i2/2375177132/O1CN01tI2WiW22YVDTkFZfx_!!2375177132.jpg)
  
 
+![img](assets/img/dashboard.jpg)
 
 ## 下载&安装
 
