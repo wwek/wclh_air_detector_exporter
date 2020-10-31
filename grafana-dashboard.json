@@ -70,7 +70,6 @@
       "id": 7,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -88,7 +87,7 @@
       "pluginVersion": "7.2.2",
       "targets": [
         {
-          "expr": "avg_over_time(meter_temperature[10m])",
+          "expr": "avg_over_time(meter_temperature[15m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -96,7 +95,7 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": null,
       "timeShift": null,
       "title": "温度",
       "type": "stat"
@@ -148,7 +147,6 @@
       "id": 20,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -166,7 +164,7 @@
       "pluginVersion": "7.2.2",
       "targets": [
         {
-          "expr": "avg_over_time(meter_humidity[10m])",
+          "expr": "avg_over_time(meter_humidity[15m])",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -175,12 +173,251 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": null,
       "title": "湿度",
       "type": "stat"
     },
     {
       "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "description": "AQI@PM2.5 空气质量指数",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 1,
+          "displayName": "AQI",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "什么是空气质量指数（AQI）？",
+              "url": "http://www.pm25.com/news/385.html"
+            }
+          ],
+          "mappings": [],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#ffbb19",
+                "value": 50
+              },
+              {
+                "color": "#c57902",
+                "value": 150
+              },
+              {
+                "color": "#ea1219",
+                "value": 200
+              },
+              {
+                "color": "#b3055a",
+                "value": 300
+              },
+              {
+                "color": "#600202",
+                "value": 600
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 15,
+      "interval": null,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.2.2",
+      "targets": [
+        {
+          "expr": "meter_aqiatpm2dot5",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "AQI",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "title": "AQI@PM2.5 空气质量指数",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "description": "异味 TVOC mg/m³",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              },
+              {
+                "color": "#d44a3a",
+                "value": 0.8
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "hideTimeOverride": false,
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.2.2",
+      "targets": [
+        {
+          "expr": "meter_tvoc",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "异味 TVOC mg/m³",
+      "type": "gauge"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "description": "甲醛 HCHO mg/m³",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#629e51",
+                "value": 0.01
+              },
+              {
+                "color": "#bf1b00",
+                "value": 0.08
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 6
+      },
+      "id": 16,
+      "interval": null,
+      "links": [],
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "7.2.2",
+      "targets": [
+        {
+          "expr": "meter_hcho",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Piano",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "title": "甲醛 HCHO mg/m³",
+      "type": "gauge"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "Prometheus",
       "description": "AQI@PM2.5 空气质量指数",
       "fieldConfig": {
@@ -234,29 +471,42 @@
         },
         "overrides": []
       },
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 12,
-        "y": 0
+        "x": 6,
+        "y": 6
       },
-      "id": 15,
+      "hiddenSeries": false,
+      "id": 35,
       "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
       },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
       "pluginVersion": "7.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
           "expr": "meter_aqiatpm2dot5",
@@ -268,161 +518,53 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
-      "title": "AQI@PM2.5 空气质量指数",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "description": "甲醛 HCHO mg/m³",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#629e51",
-                "value": 0.01
-              },
-              {
-                "color": "#bf1b00",
-                "value": 0.08
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 18,
-        "y": 0
-      },
-      "id": 16,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.2.2",
-      "targets": [
-        {
-          "expr": "meter_hcho",
-          "format": "time_series",
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Piano",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": "6h",
-      "title": "甲醛 HCHO mg/m³",
-      "type": "gauge"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "description": "异味 TVOC mg/m³",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#299c46",
-                "value": null
-              },
-              {
-                "color": "#d44a3a",
-                "value": 0.8
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 0,
-        "y": 6
-      },
-      "hideTimeOverride": false,
-      "id": 6,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
-      },
-      "pluginVersion": "7.2.2",
-      "targets": [
-        {
-          "expr": "meter_tvoc",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": "6h",
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "异味 TVOC mg/m³",
-      "type": "gauge"
+      "title": "AQI@PM2.5 空气质量指数",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
+      "aliasColors": {},
+      "bars": false,
       "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "Prometheus",
       "description": "异味 TVOC mg/m³",
       "fieldConfig": {
@@ -458,49 +600,100 @@
         },
         "overrides": []
       },
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 6,
+        "x": 12,
         "y": 6
       },
+      "hiddenSeries": false,
       "hideTimeOverride": false,
       "id": 34,
       "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
       },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
       "pluginVersion": "7.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
           "expr": "meter_tvoc",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "",
+          "legendFormat": "TVOC",
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "异味 TVOC mg/m³",
-      "type": "stat"
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "conngNm3",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
+      "aliasColors": {},
+      "bars": false,
       "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "Prometheus",
       "description": "甲醛 HCHO mg/m³",
       "fieldConfig": {
@@ -537,31 +730,42 @@
         },
         "overrides": []
       },
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 12,
+        "x": 18,
         "y": 6
       },
+      "hiddenSeries": false,
       "id": 33,
       "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
       },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
       "pluginVersion": "7.2.2",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
           "expr": "meter_hcho",
@@ -569,91 +773,50 @@
           "instant": false,
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Piano",
+          "legendFormat": "HCHO",
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
       "title": "甲醛 HCHO mg/m³",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 1,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#73BF69",
-                "value": null
-              },
-              {
-                "color": "#629e51",
-                "value": 16
-              },
-              {
-                "color": "#bf1b00",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
       },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 18,
-        "y": 6
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
       },
-      "id": 23,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "targets": [
+      "yaxes": [
         {
-          "expr": "meter_ch_pm10",
-          "format": "time_series",
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Piano",
-          "refId": "A"
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
       ],
-      "timeFrom": "6h",
-      "title": "国标CH PM10 ug/m³",
-      "type": "stat"
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "cacheTimeout": null,
@@ -702,7 +865,6 @@
       "id": 24,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -729,7 +891,7 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": null,
       "title": "美标US PM1.0 ug/m³",
       "type": "stat"
     },
@@ -780,7 +942,6 @@
       "id": 21,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -807,7 +968,7 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": null,
       "title": "国标CH PM1.0 ug/m³",
       "type": "stat"
     },
@@ -861,7 +1022,6 @@
       "id": 22,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -888,7 +1048,7 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": null,
       "timeShift": null,
       "title": "国标CH PM2.5 ug/m³",
       "type": "stat"
@@ -916,6 +1076,14 @@
               {
                 "color": "#73BF69",
                 "value": null
+              },
+              {
+                "color": "#629e51",
+                "value": 16
+              },
+              {
+                "color": "#bf1b00",
+                "value": 80
               }
             ]
           },
@@ -929,10 +1097,9 @@
         "x": 18,
         "y": 12
       },
-      "id": 27,
+      "id": 23,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -950,7 +1117,7 @@
       "pluginVersion": "7.2.2",
       "targets": [
         {
-          "expr": "meter_gt0dot3um",
+          "expr": "meter_ch_pm10",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -959,8 +1126,8 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
-      "title": "直径大于 >0.3um 颗粒物个数 ug/m³",
+      "timeFrom": null,
+      "title": "国标CH PM10 ug/m³",
       "type": "stat"
     },
     {
@@ -1003,10 +1170,9 @@
         "x": 0,
         "y": 18
       },
-      "id": 28,
+      "id": 30,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1024,7 +1190,7 @@
       "pluginVersion": "7.2.2",
       "targets": [
         {
-          "expr": "meter_gt0dot5um",
+          "expr": "meter_gt2dot5um",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1033,8 +1199,8 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
-      "title": "直径大于 >0.5um 颗粒物个数 ug/m³",
+      "timeFrom": null,
+      "title": "直径大于 >2.5um 颗粒物个数 ug/m³",
       "type": "stat"
     },
     {
@@ -1084,7 +1250,6 @@
       "id": 25,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1111,7 +1276,7 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": null,
       "title": "美标US PM2.5 ug/m³",
       "type": "stat"
     },
@@ -1162,7 +1327,6 @@
       "id": 26,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1189,7 +1353,7 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": null,
       "title": "美标US PM10 ug/m³",
       "type": "stat"
     },
@@ -1233,10 +1397,9 @@
         "x": 18,
         "y": 18
       },
-      "id": 32,
-      "interval": null,
+      "id": 28,
+      "interval": "",
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1254,7 +1417,7 @@
       "pluginVersion": "7.2.2",
       "targets": [
         {
-          "expr": "meter_gt10um",
+          "expr": "meter_gt0dot5um",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1263,8 +1426,8 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
-      "title": "直径大于 >10um 颗粒物个数 ug/m³",
+      "timeFrom": null,
+      "title": "直径大于 >0.5um 颗粒物个数 ug/m³",
       "type": "stat"
     },
     {
@@ -1307,10 +1470,9 @@
         "x": 0,
         "y": 24
       },
-      "id": 30,
+      "id": 29,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1328,7 +1490,7 @@
       "pluginVersion": "7.2.2",
       "targets": [
         {
-          "expr": "meter_gt2dot5um",
+          "expr": "meter_gt1dot0um",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1337,8 +1499,8 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
-      "title": "直径大于 >2.5um 颗粒物个数 ug/m³",
+      "timeFrom": null,
+      "title": "直径大于 >1.0um 颗粒物个数 ug/m³",
       "type": "stat"
     },
     {
@@ -1381,10 +1543,9 @@
         "x": 6,
         "y": 24
       },
-      "id": 29,
+      "id": 31,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1402,7 +1563,7 @@
       "pluginVersion": "7.2.2",
       "targets": [
         {
-          "expr": "meter_gt1dot0um",
+          "expr": "meter_gt5dot0um",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1411,8 +1572,77 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
-      "title": "直径大于 >1.0um 颗粒物个数 ug/m³",
+      "timeFrom": null,
+      "title": "直径大于 >5.0um 颗粒物个数 ug/m³",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 1,
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73BF69",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 24
+      },
+      "id": 27,
+      "interval": null,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.2.2",
+      "targets": [
+        {
+          "expr": "meter_gt0dot3um",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Piano",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "title": "直径大于 >0.3um 颗粒物个数 ug/m³",
       "type": "stat"
     },
     {
@@ -1452,13 +1682,12 @@
       "gridPos": {
         "h": 6,
         "w": 6,
-        "x": 12,
+        "x": 18,
         "y": 24
       },
-      "id": 31,
-      "interval": null,
+      "id": 32,
+      "interval": "",
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1476,7 +1705,7 @@
       "pluginVersion": "7.2.2",
       "targets": [
         {
-          "expr": "meter_gt5dot0um",
+          "expr": "meter_gt10um",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1485,37 +1714,9 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
-      "title": "直径大于 >5.0um 颗粒物个数 ug/m³",
+      "timeFrom": null,
+      "title": "直径大于 >10um 颗粒物个数 ug/m³",
       "type": "stat"
-    },
-    {
-      "dashboardFilter": "",
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "folderId": null,
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 18,
-        "y": 24
-      },
-      "height": "150px",
-      "id": 17,
-      "limit": 10,
-      "links": [],
-      "nameFilter": "",
-      "onlyAlertsOnDashboard": false,
-      "show": "current",
-      "sortOrder": 1,
-      "stateFilter": [],
-      "title": "Alerts",
-      "type": "alertlist"
     },
     {
       "cacheTimeout": null,
@@ -1564,7 +1765,6 @@
       "id": 8,
       "interval": null,
       "links": [],
-      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1590,13 +1790,42 @@
           "refId": "A"
         }
       ],
-      "timeFrom": "6h",
+      "timeFrom": null,
       "timeShift": null,
       "title": "二氧化碳 CO2 ppm ",
       "type": "stat"
+    },
+    {
+      "dashboardFilter": "",
+      "dashboardTags": [],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "folderId": null,
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 30
+      },
+      "height": "150px",
+      "id": 17,
+      "limit": 10,
+      "links": [],
+      "nameFilter": "",
+      "onlyAlertsOnDashboard": false,
+      "show": "current",
+      "sortOrder": 1,
+      "stateFilter": [],
+      "title": "Alerts",
+      "type": "alertlist"
     }
   ],
-  "refresh": "5s",
+  "refresh": "30s",
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
@@ -1635,5 +1864,5 @@
   "timezone": "Asia/Shanghai",
   "title": "环境&空气监测📡",
   "uid": "Gi67grkRk",
-  "version": 40
+  "version": 60
 }
