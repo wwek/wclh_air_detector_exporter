@@ -8,7 +8,7 @@ import (
 )
 
 func TestAqiatpm2dot5(t *testing.T) {
-	aqiResult, err := aqi.Calculate(aqi.PM25{Concentration: 23})
+	aqiResult, err := aqi.Calculate(aqi.PM25{Concentration: 26.5})
 	if err != nil {
 		fmt.Println(err)
 		return

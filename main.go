@@ -21,7 +21,7 @@ var (
 
 func main() {
 	flag.Parse()
-
+	fmt.Println(versionInfo())
 	SetupMetrics()
 
 	http.HandleFunc("/", httpIndexRequestHandler)
